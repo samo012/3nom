@@ -1,0 +1,25 @@
+{
+  "name": "3nom",
+  "version": "1.0.0",
+  "description": "Interview Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samo012/3nom.git"
+  },
+  "author": "Andrew Samole",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samo012/3nom/issues"
+  },
+  "homepage": "https://github.com/samo012/3nom#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.2"
+  }
+}
