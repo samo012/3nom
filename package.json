@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/samo012/3nom#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "mongodb": "^3.2.2",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.43",
     "path": "^0.12.7"
   }
 }
