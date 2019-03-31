@@ -11,9 +11,8 @@ app.use(bodyParser.json());
 
 // Create link to Angular build directory
 
-app.get('/',function(req,res){
-    res.sendFile(__dirname + '/index.html'); 
-});
+app.use('/', express.static(path.join(__dirname, 'public')));
+
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
