@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="contactsApp">
+<html lang="en" ng-app="3nom">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,21 +25,29 @@
     <script src="app.js"></script>
   </head>
 
-  <body>
+  <body ng-controller="myCtrl">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <div class="navbar-brand" href="#/">mLab Contact List</div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home</a></li>
-          </ul>
-        </div>
+
       </div>
     </nav>
-    <!-- Dynamically render templates -->
-    <div class="container" ng-view>
+    <div class="container" >
+      <select ng-model="selectedSpeaker" ng-options="speaker.speaker for speaker in speakers | orderBy:'-isMainSpeaker'" ng-change="getCat()">
+        
+      </select>
+      
+      <select id="category" ng-model="selectedCat" ng-options="cat.name for cat in cats" placeholder="First name">
+        
+      </select>
     </div>
+   <table >
+
+  <tr ng-repeat="x in speakers" >
+    <td>{{ x.speaker }}</td>
+  </tr>
+</table>
   </body>
 </html>
