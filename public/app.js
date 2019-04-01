@@ -5,12 +5,14 @@ app.controller("myCtrl", function($scope, $http) {
   $scope.selectedCat = "";
   $scope.selectedSubCat = "";
 
+//get all speakers
   $http.get('https://api.itorah.com/api/Speakers/allspeakers').
   then(function(response) {
     var data = response.data;
 
     for (var i = 0; i <= data.length; i++) {
       if(typeof data[i] !== 'undefined'){
+        //if main speaker insert Main Speaker: 
        if (data[i].isMainSpeaker === true){
         data[i].speaker =  "Main Speaker: "+ data[i].speaker;
       }
@@ -24,13 +26,14 @@ app.controller("myCtrl", function($scope, $http) {
 
 });
 
+//Initially disable 2nd and 3rd Dropdowns
   var catElement = document.getElementById("category");
   catElement.disabled = true;
   var scatElement = document.getElementById("scategory");
   scatElement.disabled = true;
 
-  $scope.getCat = function(){
 
+  $scope.getCat = function(){
     catElement.disabled = false;
     $http.get("https://api.itorah.com/api/Categories/catfilter?="+$scope.selectedSpeaker.id).
     then(function(response) {
@@ -40,8 +43,6 @@ app.controller("myCtrl", function($scope, $http) {
         categories[i].name = categories[i].name + " (" + categories[i].shiurCount + ")";
     }
     $scope.cats = categories;
-
-
   });
   }
 
@@ -63,11 +64,11 @@ app.controller("myCtrl", function($scope, $http) {
       $http.get("https://api.itorah.com/api/Shiurim/all?PageIndex=1&PageSize=20&CategoryID="+$scope.selectedSubCat.id+"&SpeakerID="+$scope.selectedSpeaker.id).
     then(function(response) {
       $scope.results =  response.data.shiurList;
-  });
-       else
+    });
+    else
       $http.get("https://api.itorah.com/api/Shiurim/all?PageIndex=1&PageSize=20&CategoryID="+$scope.selectedCat.id+"&SpeakerID="+$scope.selectedSpeaker.id).
     then(function(response) {
       $scope.results =  response.data.shiurList;
-  });
- }
+    });
+  }
 });
