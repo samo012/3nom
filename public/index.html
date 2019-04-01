@@ -9,12 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <!-- Angular lib -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Create some padding for body -->
+
     <style>
       body {
         min-height: 2000px;
@@ -29,24 +32,32 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <div class="navbar-brand" href="#/">mLab Contact List</div>
+          <div class="navbar-brand" href="#/">Shiur List</div>
         </div>
 
       </div>
     </nav>
     <div class="container" >
-      <select ng-model="selectedSpeaker" ng-options="speaker.speaker for speaker in speakers | orderBy:'-isMainSpeaker'" ng-change="getCat()">
+      <label for="speaker">Speaker: </label>
+      <select ng-model="selectedSpeaker" ng-options="speaker.speaker for speaker in speakers | orderBy:'-isMainSpeaker'" id="speaker" ng-change="getCat()">
         
       </select>
-      
-      <select id="category" ng-model="selectedCat" ng-options="cat.name for cat in cats" placeholder="First name">
-        
-      </select>
-    </div>
-   <table >
+      <label for="category">Category: </label>
+      <select id="category" ng-model="selectedCat" ng-options="cat.name for cat in cats" ng-change="getSubCat()">
 
-  <tr ng-repeat="x in speakers" >
-    <td>{{ x.speaker }}</td>
+      </select>
+      <label for="scategory">Sub Category: </label>
+      <select id="scategory" ng-model="selectedSubCat" ng-options="scat.name for scat in scats">
+      </select>
+      <button ng-click="getResults()">Search</button>
+    </div>
+
+   <table class="table">
+  <tr ng-repeat="x in results" >
+    <td>{{ x.title }}<br> by {{ x.speaker }} 
+      <div ng-if="x.audio"><i class='far fa-play-circle'></i></div>
+      <div ng-if="x.video"><i class='fas fa-video'></i></div>
+    </td>
   </tr>
 </table>
   </body>
